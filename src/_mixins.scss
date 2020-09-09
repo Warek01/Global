@@ -1,7 +1,11 @@
-@mixin logo-text ($font-size: 72px) {
+@mixin logo-text ($font-size: 72px, $cursor: false) {
    font-weight: 900;
    font-family: "Proxima Nova";
    font-size: $font-size;
    color: #fff;
    text-decoration: none;
+
+   @if $cursor == false {
+      cursor: default;
+   }
 }
