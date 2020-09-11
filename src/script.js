@@ -10,6 +10,23 @@ const slide_1 = content.find(".slide-1"),
       slide_4 = content.find(".slide-4"),
       slide_5 = content.find(".slide-5");
 
+const active_slide = {
+   num: 1,
+   prev: null,
+   change: function(newSl) {
+      if (this.num !== newSl) {
+         newSl !== 1 ?
+            header.find("#hire-us").addClass("active") :
+            header.find("#hire-us").removeClass("active");
+         
+         this.prev = this.num;
+         this.num = newSl;
+
+         side_map.find(".active").removeClass("active");
+         side_map.find(".display").eq(this.num - 1).addClass("active");
+      }
+   }
+};
 
 /* Global container minimization logic */
 
@@ -33,7 +50,7 @@ function maximize(e) {
          "pointer-events": "all"
       });
 
-      header.find("button")
+      header.find("button#to-menu")
       .find("img").remove().end()
       .append($("<img />", {
          alt: "maximize",
@@ -52,7 +69,7 @@ function minimize(e) {
          "pointer-events": "none"
       });
 
-      header.find("button")
+      header.find("button#to-menu")
       .find("img").remove().end()
       .append($("<img />", {
          alt: "minimize",
@@ -75,23 +92,17 @@ function minimize(e) {
 
 /* Side-Menu components */
 
-let active_slide = 1;
-
 side_menu.find("button").click(function(e) {
 
-   let calc = (active_slide - $(this).data("order")) * $(".slide").height() - 200;
+   let calc = (active_slide.num - $(this).data("order")) * $(".slide").height();
 
    side_menu.find("button.active").removeClass("active");
    $(this).addClass("active");
-   
-   if (active_slide !== $(this).data("order")) {
-      if (calc < 0) {
-         $("#slide-container").css("top", calc);
-      } else {
-         $("#slide-container").css("top", 0);
-      }
-      active_slide = $(this).data("order");
-   }
+
+   $("#slide-container").css("top", parseInt($("#slide-container").css("top")) + calc);
+
+   active_slide.change($(this).data("order"));
+
    maximize();
 });
 
@@ -113,6 +124,8 @@ slide_1.find("section .title").click(function(e) {
 
 
 /* Slide-2 components */
+
+side_menu.find("button").eq(1)[0].click();
 
 /* -------------------------------------- */
 

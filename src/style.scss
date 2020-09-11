@@ -80,6 +80,7 @@ button, button:focus {
    cursor: pointer;
    background: transparent;
    text-transform: uppercase;
+   user-select: none;
 }
 
 body {
@@ -124,7 +125,7 @@ header {
    display: grid;
    width: 100%;
    height: 70px;
-   grid-template-columns: auto auto auto;
+   grid-template-columns: repeat(3, 33.333%);
    align-content: center;
    text-transform: uppercase;
    font-weight: bold;
@@ -157,9 +158,15 @@ header {
       justify-self: center;
       background-color: $dimblue;
       border: none;
+      transition: all 400ms ease;
 
       filter: opacity(0);
       pointer-events: none;
+
+      &.active {
+         filter: opacity(1);
+         pointer-events: all;
+      }
    }
 } /* Header */
 
@@ -238,6 +245,8 @@ header {
          background-color: #606060;
 
          &.active {
+
+            background-color: $dimblue;
             span.num-active { filter: opacity(1); }
             span.num-passive { filter: opacity(0); }
             span.category {
@@ -397,3 +406,11 @@ header {
       }
    }
 } /* .slide1 */
+
+.slide-2 {
+
+   .logo {
+      @include logo-text(30px, $tt: false);
+      text-align: center;
+   }
+} /* .slide-2 */
