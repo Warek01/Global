@@ -3,6 +3,7 @@ const menu_button = $("button#to-menu");
 const content = $("#global-container");
 const side_menu = $("nav#side-menu");
 const side_map = $("#side-map-wrap");
+const header = $("header");
 const slide_1 = content.find(".slide-1"),
       slide_2 = content.find(".slide-2"),
       slide_3 = content.find(".slide-3"),
@@ -14,7 +15,12 @@ const slide_1 = content.find(".slide-1"),
 
 let is_minimized = false;
 
-menu_button.click(minimize);
+menu_button.click(() => {
+   if (!is_minimized)
+      minimize();
+   else
+      maximize();
+});
 
 content.click(maximize);
 
@@ -26,6 +32,13 @@ function maximize(e) {
          "filter": "opacity(1)",
          "pointer-events": "all"
       });
+
+      header.find("button")
+      .find("img").remove().end()
+      .append($("<img />", {
+         alt: "maximize",
+         src: "./img/HAMBURGER-MENU.png"
+      }));
    }
    is_minimized = false;
 }
@@ -39,6 +52,13 @@ function minimize(e) {
          "pointer-events": "none"
       });
 
+      header.find("button")
+      .find("img").remove().end()
+      .append($("<img />", {
+         alt: "minimize",
+         src: "./img/X.png"
+      }));
+
       setTimeout(() => {
          side_menu.attr("id", "side-menu-active");
       }, 100);
@@ -50,7 +70,6 @@ function minimize(e) {
    }
 }
 
-
 /* -------------------------------------- */
 
 
@@ -59,7 +78,12 @@ function minimize(e) {
 let active_slide = 1;
 
 side_menu.find("button").click(function(e) {
-   let calc = (active_slide - $(this).data("order")) * $("#slide-container").height() - 200 /* / 5 */;
+
+   let calc = (active_slide - $(this).data("order")) * $(".slide").height() - 200;
+
+   side_menu.find("button.active").removeClass("active");
+   $(this).addClass("active");
+   
    if (active_slide !== $(this).data("order")) {
       if (calc < 0) {
          $("#slide-container").css("top", calc);
