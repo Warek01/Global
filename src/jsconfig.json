@@ -1,0 +1,17 @@
+{
+   "typeAcquisition": {
+      "include": [
+            "express", "jquery", "chalk", "node"
+         ],
+      "enable": true
+   },
+   "files": ["app.js", "script.js"],
+   "compilerOptions": {
+      "alwaysStrict": true,
+      "strict": true,
+      "module": "esnext",
+      "charset": "utf-8",
+      "rootDir": "./",
+      "allowUnusedLabels": true
+   }
+}
