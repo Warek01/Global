@@ -6,7 +6,7 @@
   src: local("Avenir"), local("Avenir-Black"), url("fonts/subset-AvenirLTStd-Black.eot?#iefix") format("embedded-opentype"), url("fonts/subset-AvenirLTStd-Black.woff2") format("woff2"), url("fonts/subset-AvenirLTStd-Black.woff") format("woff"), url("fonts/subset-AvenirLTStd-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
-  font-display: fallback;
+  font-display: block;
 }
 /* Proxima Nova Thin */
 @font-face {
@@ -15,7 +15,7 @@
   src: local("Proxima Nova Thin"), local("ProximaNovaT-Thin"), url("fonts/subset-ProximaNovaT-Thin.eot?#iefix") format("embedded-opentype"), url("fonts/subset-ProximaNovaT-Thin.woff2") format("woff2"), url("fonts/subset-ProximaNovaT-Thin.woff") format("woff"), url("fonts/subset-ProximaNovaT-Thin.ttf") format("truetype");
   font-weight: 100;
   font-style: normal;
-  font-display: fallback;
+  font-display: block;
 }
 /* proxima Nova Rgular */
 @font-face {
@@ -24,7 +24,7 @@
   src: local("Proxima Nova Regular"), local("ProximaNova-Regular"), url("fonts/subset-ProximaNova-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/subset-ProximaNova-Regular.woff2") format("woff2"), url("fonts/subset-ProximaNova-Regular.woff") format("woff"), url("fonts/subset-ProximaNova-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-  font-display: fallback;
+  font-display: block;
 }
 /* Proxima Nova Bold */
 @font-face {
@@ -33,7 +33,7 @@
   src: local("Proxima Nova Bold"), local("ProximaNova-Bold"), url("fonts/subset-ProximaNova-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/subset-ProximaNova-Bold.woff2") format("woff2"), url("fonts/subset-ProximaNova-Bold.woff") format("woff"), url("fonts/subset-ProximaNova-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
-  font-display: fallback;
+  font-display: block;
 }
 /* -- Fonts end -- */
 .logo-text {
@@ -73,6 +73,87 @@ body {
   perspective: 700px;
 }
 
+#load-screen {
+  position: absolute;
+  display: grid;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 500px;
+  grid-template-rows: 80px 80px;
+  align-content: center;
+  justify-content: center;
+  background-color: #000;
+}
+#load-screen * {
+  align-self: center;
+  justify-self: center;
+}
+#load-screen p {
+  font-weight: 900;
+  font-family: "Proxima Nova";
+  font-size: 42px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: default;
+  position: relative;
+  top: -50px;
+  letter-spacing: 4px;
+  font-weight: 300;
+  animation: flutter 3s infinite;
+}
+#load-screen .load {
+  position: relative;
+  display: grid;
+  top: -35px;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(5, auto);
+}
+#load-screen .ld {
+  position: relative;
+  display: block;
+  width: 4px;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+  filter: opacity(0);
+  transition: all .15s ease;
+  animation: loading 1750ms infinite;
+}
+#load-screen .ld-1 {
+  animation-delay: 0ms;
+}
+#load-screen .ld-2 {
+  animation-delay: 200ms;
+}
+#load-screen .ld-3 {
+  animation-delay: 400ms;
+}
+#load-screen .ld-4 {
+  animation-delay: 800ms;
+}
+#load-screen .ld-5 {
+  animation-delay: 1000ms;
+}
+@keyframes loading {
+  50% {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0);
+  }
+}
+@keyframes flutter {
+  50% {
+    filter: opacity(0.6);
+  }
+  100% {
+    filter: opacity(1);
+  }
+}
+/* #load-screen */
 #global-container {
   position: absolute;
   top: -2px;
@@ -386,6 +467,9 @@ header button#hire-us.active {
 }
 
 /* .slide1 */
+.slide-2 {
+  /* #slider */
+}
 .slide-2 .logo {
   font-weight: 900;
   font-family: "Proxima Nova";
@@ -425,22 +509,17 @@ header button#hire-us.active {
   align-items: center;
 }
 .slide-2 #slider .wrapper img {
+  position: relative;
+  display: block;
+  left: 0;
   border-radius: 25%;
+  width: 167px;
+  height: 167px;
+  transition: all 400ms ease;
 }
-.slide-2 #slider .wrapper img::after {
-  text-transform: uppercase;
-  color: #282828;
-  width: 100px;
-  height: 20px;
-}
-.slide-2 #slider .wrapper img:nth-child(1)::after {
-  content: "victory";
-}
-.slide-2 #slider .wrapper img:nth-child(2)::after {
-  content: "main";
-}
-.slide-2 #slider .wrapper img:nth-child(3)::after {
-  content: "alex nowak";
+.slide-2 #slider .wrapper img.active {
+  width: 333px;
+  height: 333px;
 }
 .slide-2 #titles {
   position: relative;

@@ -125,7 +125,63 @@ slide_1.find("section .title").click(function(e) {
 
 /* Slide-2 components */
 
-side_menu.find("button").eq(1)[0].click();
+side_menu.find("button").eq(1).trigger("click");
+
+(() => {
+
+   const slider = slide_2.find("#slider"),
+         wrap = slider.find(".wrapper");
+
+   const button_left = slider.find("#slide-left"),
+         button_right = slider.find("#slide-right");
+
+   let stage = 1;
+         
+   button_left.click(function(e) {
+
+      if (stage === 1) {
+         wrap.find("img").eq(1).css({
+            left: -258
+         }).removeClass("active")
+
+         .prev("img").css({
+            left: 516
+         }).end()
+
+         .next("img").css({
+            left: -258
+         }).addClass("active");
+
+         stage++;
+      } else if (stage === 2) {
+         wrap.find("img").eq(1).css({
+            left: 258
+         })
+
+         .prev("img").css({
+            left: 258
+         }).addClass("active").end()
+
+         .next("img").css({
+            left: -516
+         }).removeClass("active");
+
+         stage++;
+      } else {
+         wrap.find("img").eq(0).addClass("active").end()
+         .prev().removeClass("active").end() 
+         .css("left", "0");
+         stage = 1;
+      }
+      console.log(wrap.find("img").eq(0).css("left"))
+   });
+
+   button_right.click(function(e) {
+
+   });
+
+})();
+
 
 /* -------------------------------------- */
 
@@ -138,5 +194,18 @@ side_menu.find("button").eq(1)[0].click();
 /* -------------------------------------- */
 
 /* Slide-5 components */
+
+/* -------------------------------------- */
+
+
+/* Load screen */
+
+// $(document).ready(function(e) {
+//    setTimeout(() => {
+//       $("#load-screen").hide(500);
+//    }, 2000);
+// });
+
+$("#load-screen").css("display", "none");
 
 /* -------------------------------------- */
