@@ -1,14 +1,13 @@
-@mixin logo-text ($font-size: 72px, $cursor: false, $tt: true) {
+@mixin logo-text ($font-size: 72px, $cursor: text, $tt: true) {
    font-weight: 900;
    font-family: "Proxima Nova";
    font-size: $font-size;
    color: #fff;
    text-decoration: none;
+   text-transform: uppercase;
+   cursor: $cursor;
 
    @if $tt == false {
       text-transform: none;
    }
-
-   @if $cursor == false { cursor: default; } 
-   @else if $cursor == pointer { cursor: pointer }
 }

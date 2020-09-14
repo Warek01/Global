@@ -42,7 +42,8 @@
   font-size: 72px;
   color: #fff;
   text-decoration: none;
-  cursor: default;
+  text-transform: uppercase;
+  cursor: text;
 }
 
 * {
@@ -165,8 +166,9 @@ header button#hire-us.active {
   font-size: 55px;
   color: #fff;
   text-decoration: none;
-  text-transform: none;
+  text-transform: uppercase;
   cursor: pointer;
+  text-transform: none;
   align-self: center;
   justify-self: right;
 }
@@ -390,9 +392,97 @@ header button#hire-us.active {
   font-size: 30px;
   color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
+  cursor: text;
   text-transform: none;
-  cursor: default;
   text-align: center;
+}
+.slide-2 #slider {
+  position: relative;
+  display: flex;
+  width: 970px;
+  height: 330px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px auto;
+}
+.slide-2 #slider button {
+  display: flex;
+  height: 53px;
+  width: 53px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #282828;
+}
+.slide-2 #slider button:last-child {
+  transform: rotateZ(180deg);
+}
+.slide-2 #slider .wrapper {
+  display: flex;
+  width: 862px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.slide-2 #slider .wrapper img {
+  border-radius: 25%;
+}
+.slide-2 #slider .wrapper img::after {
+  text-transform: uppercase;
+  color: #282828;
+  width: 100px;
+  height: 20px;
+}
+.slide-2 #slider .wrapper img:nth-child(1)::after {
+  content: "victory";
+}
+.slide-2 #slider .wrapper img:nth-child(2)::after {
+  content: "main";
+}
+.slide-2 #slider .wrapper img:nth-child(3)::after {
+  content: "alex nowak";
+}
+.slide-2 #titles {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  grid-auto-rows: 50px;
+  grid-column-gap: 60px;
+  justify-content: center;
+}
+.slide-2 #titles p.title {
+  font-weight: 900;
+  font-family: "Proxima Nova";
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: text;
+  text-align: center;
+  align-self: center;
+  transition: all 400ms ease;
+  filter: opacity(0);
+}
+.slide-2 #titles p.title.active {
+  filter: opacity(1);
+}
+.slide-2 #titles p.text {
+  font-weight: 900;
+  font-family: "Proxima Nova";
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: text;
+  text-transform: none;
+  font-weight: normal;
+  text-align: center;
+  align-self: center;
+  transition: all 400ms ease;
+  filter: opacity(0);
+}
+.slide-2 #titles p.text.active {
+  filter: opacity(1);
 }
 
 /* .slide-2 */

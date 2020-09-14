@@ -63,6 +63,7 @@
 .logo-text { @include logo-text; }
 
 $dimblue: #0f33ff;
+$gray: #282828;
 
 * {
    font: inherit;
@@ -412,5 +413,99 @@ header {
    .logo {
       @include logo-text(30px, $tt: false);
       text-align: center;
+   }
+
+   #slider {
+      position: relative;
+      display: flex;
+      width: 970px;
+      height: 330px;
+      justify-content: space-between;
+      align-items: center;
+      margin: 50px auto;
+
+      button {
+         display: flex;
+         height: 53px;
+         width: 53px;
+         justify-content: center;
+         align-items: center;
+         border-radius: 50%;
+         background-color: $gray;
+
+         &:last-child { transform: rotateZ(180deg); }
+      }
+
+      .wrapper {
+         display: flex;
+         width: 862px;
+         justify-content: space-evenly;
+         align-items: center;
+
+         img { 
+            border-radius: 25%; 
+
+            &.active {
+
+               &::after {
+
+               }
+            }
+
+            &::after {
+               text-transform: uppercase;
+               color: $gray;
+               width: 100px;
+               height: 20px;
+            }
+
+            &:nth-child(1)::after {
+               content: "victory";
+            }
+
+            &:nth-child(2)::after {
+               content: "main";
+            }
+
+            &:nth-child(3)::after {
+               content: "alex nowak"
+            }
+         }
+      }
+
+   }
+   
+   #titles {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 250px);
+      grid-auto-rows: 50px;
+      grid-column-gap: 60px;
+      justify-content: center;
+      
+      p.title {
+         @include logo-text(18px);
+         text-align: center;
+         align-self: center;
+         transition: all 400ms ease;
+         filter: opacity(0);
+
+         &.active {
+            filter: opacity(1);
+         }
+      }
+
+      p.text {
+         @include logo-text(16px, $tt: false);
+         font-weight: normal;
+         text-align: center;
+         align-self: center;
+         transition: all 400ms ease;
+         filter: opacity(0);
+
+         &.active {
+            filter: opacity(1);
+         }
+      }
    }
 } /* .slide-2 */
