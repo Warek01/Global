@@ -1,4 +1,11 @@
 "use strict";
+
+/* Config */
+const loadScreen = true;       /* bool */
+const loadScreen_timer = 2000; /*  ms  */
+const start_slide = 1;         /* int  */
+
+/* Components */
 const menu_button = $("button#to-menu");
 const content = $("#global-container");
 const side_menu = $("nav#side-menu");
@@ -28,6 +35,7 @@ const active_slide = {
    }
 };
 
+
 /* Global container minimization logic */
 
 let is_minimized = false;
@@ -46,8 +54,8 @@ function maximize(e) {
       content.removeClass("minimized");
       side_menu.attr("id", "side-menu");
       side_map.css({
-         "filter": "opacity(1)",
-         "pointer-events": "all"
+         filter: "opacity(1)",
+         pointerEvents: "all"
       });
 
       header.find("button#to-menu")
@@ -65,8 +73,8 @@ function minimize(e) {
 
       content.addClass("minimized");
       side_map.css({
-         "filter": "opacity(0)",
-         "pointer-events": "none"
+         filter: "opacity(0)",
+         pointerEvents: "none"
       });
 
       header.find("button#to-menu")
@@ -124,8 +132,6 @@ slide_1.find("section .title").click(function(e) {
 
 
 /* Slide-2 components */
-
-side_menu.find("button").eq(1).trigger("click");
 
 (() => {
 
@@ -200,12 +206,21 @@ side_menu.find("button").eq(1).trigger("click");
 
 /* Load screen */
 
-// $(document).ready(function(e) {
-//    setTimeout(() => {
-//       $("#load-screen").hide(500);
-//    }, 2000);
-// });
+if (loadScreen && loadScreen_timer) {
+   $(document).ready(function(e) {
+      setTimeout(() => {
+         $("#load-screen").hide(500);
+      }, loadScreen_timer);
+   });
+} else {
+   $("#load-screen").hide();
+}
 
-$("#load-screen").css("display", "none");
+/* -------------------------------------- */
+
+
+/* Acive slide */
+
+side_menu.find("button").eq(start_slide - 1).trigger("click");
 
 /* -------------------------------------- */
