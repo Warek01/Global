@@ -1,9 +1,9 @@
 "use strict";
 
 /* Config */
-const loadScreen = true;       /* bool */
-const loadScreen_timer = 2000; /*  ms  */
-const start_slide = 1;         /* int  */
+const loadScreen = false;
+const loadScreen_timer = 2000; 
+const start_slide = 2;         
 
 /* Components */
 const menu_button = $("button#to-menu");
@@ -147,44 +147,103 @@ slide_1.find("section .title").click(function(e) {
 
       if (stage === 1) {
          wrap.find("img").eq(1).css({
-            left: -258
+            left: -218
          }).removeClass("active")
 
          .prev("img").css({
-            left: 516
+            left: 600
          }).end()
 
          .next("img").css({
-            left: -258
+            left: -218
          }).addClass("active");
 
+         activate(3);
          stage++;
       } else if (stage === 2) {
          wrap.find("img").eq(1).css({
-            left: 258
+            left: 218
          })
 
          .prev("img").css({
-            left: 258
+            left: 218
          }).addClass("active").end()
 
          .next("img").css({
-            left: -516
+            left: -600
          }).removeClass("active");
 
+         activate(1);
          stage++;
       } else {
-         wrap.find("img").eq(0).addClass("active").end()
-         .prev().removeClass("active").end() 
-         .css("left", "0");
+         wrap.find("img").removeClass("active").css("left", "0")
+         .eq(1).addClass("active");
+
+         activate(2);
          stage = 1;
       }
-      console.log(wrap.find("img").eq(0).css("left"))
    });
 
    button_right.click(function(e) {
+      if (stage === 1) {
+         wrap.find("img").eq(1).css({
+            left: 218
+         }).removeClass("active")
 
+         .prev("img").css({
+            left: 218
+         }).addClass("active").end()
+
+         .next("img").css({
+            left: -600
+         });
+
+         activate(1);
+         stage++;
+      } else if (stage === 2) {
+         wrap.find("img").eq(1).css({
+            left: -218
+         })
+
+         .prev("img").css({
+            left: 600
+         }).removeClass("active").end()
+
+         .next("img").css({
+            left: -218
+         }).addClass("active");
+
+         activate(3);
+         stage++;
+      } else {
+         wrap.find("img").removeClass("active").css("left", "0")
+         .eq(1).addClass("active");
+
+         activate(2);
+         stage = 1;
+      }
    });
+
+   function activate(num) {
+
+      let titles = $("#titles");
+      titles.find("span").removeClass("active");
+
+      switch (num) {
+         case 1:
+            titles.find("span").eq(0).addClass("active");
+            titles.find("span").eq(3).addClass("active");
+         break;
+         case 2:
+            titles.find("span").eq(1).addClass("active");
+            titles.find("span").eq(4).addClass("active");
+         break;
+         case 3:
+            titles.find("span").eq(2).addClass("active");
+            titles.find("span").eq(5).addClass("active");
+         break;
+      }
+   }
 
 })();
 
@@ -222,5 +281,18 @@ if (loadScreen && loadScreen_timer) {
 /* Acive slide */
 
 side_menu.find("button").eq(start_slide - 1).trigger("click");
+
+let is_tranzitioning = false;
+
+$(window).keypress(e => {
+   if (!is_tranzitioning && /[1-5]/.test(e.key)) {
+      side_menu.find("button").eq(parseInt(e.key) - 1).trigger("click");
+      is_tranzitioning = true;
+
+      setTimeout(() => {
+         is_tranzitioning = false;
+      }, 400);
+   }
+});
 
 /* -------------------------------------- */
