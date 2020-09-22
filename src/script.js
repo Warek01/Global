@@ -3,7 +3,7 @@
 /* Config */
 const loadScreen = false;
 const loadScreen_timer = 2000; 
-const start_slide = 2;         
+const start_slide = 3;         
 
 /* Components */
 const menu_button = $("button#to-menu");

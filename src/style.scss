@@ -74,6 +74,8 @@ $gray: #282828;
    transition: all .2s ease;
 }
 
+br { user-select: none; }
+
 button, button:focus {
    border: none;
    outline: none;
@@ -567,3 +569,48 @@ header {
       }
    }
 } /* .slide-2 */
+
+.slide-3 {
+
+   p.logo {
+      font-size: 82px;
+      font-weight: black;
+      font-family: "Avenir";
+      line-height: 76px;
+      margin-left: 250px;
+      z-index: 2;
+
+      &::selection { 
+         color: #535353; 
+         text-decoration: underline;
+      }
+
+   }
+
+   .costume {
+      position: absolute;
+      top: -150px;
+      right: 250px;
+      user-select: none;
+      z-index: 1;
+   }
+
+   .shapes {
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+
+      img {
+         position: absolute;
+         cursor: default;
+         user-select: none;
+         top: 0;
+         z-index: -1;
+      }
+
+      .triangle {
+
+      }
+   }
+} /* .slide-3 */
