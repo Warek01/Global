@@ -3,7 +3,7 @@
 /* Config */
 const loadScreen = false;
 const loadScreen_timer = 2000; 
-const start_slide = 3;         
+const start_slide = 2;         
 
 /* Components */
 const menu_button = $("button#to-menu");
@@ -102,7 +102,7 @@ function minimize(e) {
 
 side_menu.find("button").click(function(e) {
 
-   let calc = (active_slide.num - $(this).data("order")) * $(".slide").height();
+   let calc = (active_slide.num - $(this).data("order")) * $(".slide-1").height();
 
    side_menu.find("button.active").removeClass("active");
    $(this).addClass("active");
@@ -280,7 +280,9 @@ if (loadScreen && loadScreen_timer) {
 
 /* Acive slide */
 
-side_menu.find("button").eq(start_slide - 1).trigger("click");
+if (start_slide !== 1) {
+   side_menu.find("button").eq(start_slide - 1).trigger("click");
+}
 
 let is_tranzitioning = false;
 
